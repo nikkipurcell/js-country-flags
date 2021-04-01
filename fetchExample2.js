@@ -30,20 +30,22 @@ const renderError = function(msg) {
 }
 ///////////////////////////////////////
 
-const getJSON = function(url, errorMsg = 'Something went wrong') {
-  return fetch(url)
-    .then(response => { // this repeatable code can be abstracted to a func
-      if (!response.ok)
-        throw new Error(`${errorMsg} (${response.status})`);
-
-      return response.json();
-    });
-};
-///////////////////////////////////////
+// In this fetch example:
+// first the fetch returns a promise
+// we handle that promise using the then method
+// to read the data from response we need to call the json method on the res obj
+// the return line will also return a promise from the then method
+// we handle the return promise using the 2nd then method
 
 const getCountryAndNeighbor = function(country) {
   // Country 1
-  getJSON(`https://restcountries.eu/rest/v2/name/${country}`, 'First Country not found')
+  fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+    .then(response => { // this repeatable code can be abstracted to a func
+      if (!response.ok)
+        throw new Error(`First Country not found (${response.status})`);
+
+      return response.json();
+    })
     .then(data => {
       renderCountry(data[0]);
       const neighbor = data[0].borders[0];
@@ -51,7 +53,13 @@ const getCountryAndNeighbor = function(country) {
       if(!neighbor) return;
 
       // Country 2
-      return getJSON(`https://restcountries.eu/rest/v2/alpha/${neighbor}`, 'Second Country not found')
+      return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbor}`)
+    })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(`Second Country not found (${response.status})`);
+
+        return response.json();
     })
     .then(data => renderCountry(data, 'neighbour'))
     .catch(err => {
@@ -59,8 +67,6 @@ const getCountryAndNeighbor = function(country) {
     })
     .finally(() => {
       countriesContainer.style.opacity = 1;
-      input.style.opacity = 0;
-      btn.style.opacity = 0;
     })
 };
 

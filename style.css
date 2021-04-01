@@ -104,8 +104,38 @@ body {
   padding: 2rem 5rem;
   border-radius: 0.7rem;
   color: white;
-  background-color: orangered;
+  background-color: blue;
   cursor: pointer;
+}
+
+.input-country-two {
+  border: 1px solid #cdcdcd;
+  padding: 1rem;
+  margin: 40px 0 20px;
+  display: block;
+}
+
+.btn-country-two {
+  border: none;
+  font-size: 1.5rem;
+  padding: 1rem 2.5rem;
+  border-radius: 0.7rem;
+  color: white;
+  background-color: blue;
+  cursor: pointer;
+  display: block;
+}
+
+.btn-clear {
+  border: none;
+  font-size: 1.5rem;
+  padding: 1rem 2.5rem;
+  border-radius: 0.7rem;
+  color: white;
+  background-color: #c1c1c1;
+  cursor: pointer;
+  margin: 40px 0;
+  /* opacity: 0; */
 }
 
 .images {

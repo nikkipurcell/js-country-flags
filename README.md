@@ -6,7 +6,7 @@ This app uses the [RESTCountries API](https://restcountries.eu/) to find a count
 
 It uses the fetch api to get a data response then based on the result of that data, does another fetch to find the neighbor country.
 
-### FetchExample1.js
+### FetchExample2.js
 
 This is a full demo of how I used the fetch api and the steps that followed.
 
